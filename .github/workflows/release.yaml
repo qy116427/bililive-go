@@ -18,20 +18,15 @@ jobs:
         run: make build-web
       - name: Build go binaries
         run: make release
-      - uses: softprops/action-gh-release@v1
-        with:
-          files: 'bin/*'
-          prerelease: ${{ contains(env.GIT_TAG, 'rc') }}
       - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
-
+        files: ${{ env.bililive }}/*
   release-docker-images:
     runs-on: ubuntu-20.04
     needs:
