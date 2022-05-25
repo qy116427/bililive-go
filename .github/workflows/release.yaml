@@ -1,8 +1,7 @@
 name: Release
 on:
-  push:
-    tags:
-      - 'v*'
+ repository_dispatch:
+  workflow_dispatch:
 jobs:
   release-bins:
     runs-on: ubuntu-latest
