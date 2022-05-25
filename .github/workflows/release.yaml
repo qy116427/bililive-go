@@ -23,7 +23,7 @@ jobs:
           files: 'bin/*'
           prerelease: ${{ contains(env.GIT_TAG, 'rc') }}
   release-docker-images:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs:
       - release-bins
     steps:
